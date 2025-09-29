@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeOne - Dashboards</title>
+    <!-- HEADER CSS -->
+    <link rel="stylesheet" href="../../components/header/header.css">
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="dashboards.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- O header será injetado aqui pelo main.js -->
+
+    <!-- CONTEÚDO DA PÁGINA DE DASHBOARDS -->
+    <main class="page-content" id="page-content">
+        <div class="page-header">
+            <h1>Dashboards</h1>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="chart-card">
+                <h3>Contas por Status</h3>
+                <div class="chart-container">
+                    <canvas id="bills-by-status-chart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Despesas Mensais (Últimos 6 meses)</h3>
+                <div class="chart-container">
+                    <canvas id="monthly-expenses-chart"></canvas>
+                </div>
+            </div>
+             <div class="chart-card">
+                <h3>Gastos por Categoria</h3>
+                <div class="chart-container">
+                    <canvas id="expenses-by-category-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CHART.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- LOADER PRINCIPAL -->
+    <script src="/main.js" defer></script>
+    <!-- PAGE JS -->
+    <script src="dashboards.js"></script>
+</body>
+</html>

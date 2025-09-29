@@ -1,0 +1,138 @@
+/* Estilos para o Header da Página */
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* Container do Chat */
+.chat-container {
+    max-width: 800px;
+    height: 70vh; /* Altura considerável para o chat */
+    margin: 0 auto; /* Centraliza */
+    background-color: #fff;
+    border: 1px solid var(--grey-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header do Chat */
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--grey-border);
+    background-color: #f4f5f7; /* Um fundo levemente diferente */
+    border-radius: 8px 8px 0 0;
+}
+
+.chat-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bot-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-header h2 {
+    margin: 0 0 5px 0;
+    color: var(--text-primary);
+    font-size: 1.3em;
+}
+
+.chat-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+/* Área de Mensagens */
+.chat-messages {
+    flex-grow: 1; /* Ocupa todo o espaço disponível */
+    padding: 20px;
+    overflow-y: auto; /* Habilita a rolagem vertical */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo base da bolha de mensagem */
+.message-bubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    max-width: 75%;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+/* Mensagens do Bot */
+.bot-message {
+    background-color: #e9ecef; /* Cinza claro */
+    color: var(--text-primary);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+}
+
+/* Mensagens do Usuário */
+.user-message {
+    background-color: var(--primary-color); /* Azul primário */
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+}
+
+/* Área de Input */
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--grey-border);
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: 1px solid var(--grey-border);
+    border-radius: 20px;
+    padding: 10px 18px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#chat-input:focus {
+    border-color: var(--primary-color);
+}
+
+#send-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+    background-color: #0041a3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .chat-container {
+        height: 80vh; /* Ocupa mais altura em telas menores */
+    }
+}

@@ -1,78 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeOne - Layout Completo</title>
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body id="body-container">
-
-    <div class="top-blue-line"></div>
-    <header class="top-header">
-        <div class="header-left">
-            <button class="icon-button hamburger-button" id="hamburger-button">
-                <i class="fa-solid fa-bars icon-open"></i>
-                <i class="fa-solid fa-xmark icon-close"></i>
+<!-- HEADER COMPONENT -->
+<div class="top-blue-line"></div>
+<header class="top-header">
+    <div class="header-left">
+        <button class="icon-button hamburger-button" id="hamburger-button">
+            <i class="fa-solid fa-bars icon-open"></i>
+            <i class="fa-solid fa-xmark icon-close"></i>
+        </button>
+        <div class="logo-area">
+            <img src="/src/assets/logo.png" alt="Logo BeOne" class="logo-img">
+            <span class="logo-name">BeOne</span>
+        </div>
+    </div>
+    <div class="user-area">
+        <button class="icon-button notification-button">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <div class="profile-container">
+            <button class="profile-button" id="profile-button">
+                <i class="fa-solid fa-user"></i>
             </button>
-            <div class="logo-area">
-                <img src="../../assets/logo.png" alt="Logo BeOne" class="logo-img">
-                <span class="logo-name">BeOne</span>
+            <div class="dropdown-content hidden" id="profile-dropdown">
+                <a href="#">Editar dados pessoais</a>
+                <a href="#">Sair da conta</a>
             </div>
         </div>
-        <div class="user-area">
-            <button class="icon-button notification-button">
-                <i class="fa-solid fa-bell"></i>
-            </button>
-            <div class="profile-container">
-                <button class="profile-button" id="profile-button">
-                    <i class="fa-solid fa-user"></i>
-                </button>
-                <div class="dropdown-content hidden" id="profile-dropdown">
-                    <a href="#">Editar dados pessoais</a>
-                    <a href="#">Sair da conta</a>
-                </div>
-            </div>
-        </div>
-    </header>
+    </div>
+</header>
 
-    <div class="layout-container" id="layout-container">
-        <aside class="sidebar" id="sidebar">
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="nav-item active"><a href="#" data-tooltip="Próximas contas"><i class="fa-solid fa-calendar-alt fa-fw"></i><span class="nav-text">Próximas contas</span></a></li>
-                    <li class="nav-item"><a href="#" data-tooltip="Dashboards"><i class="fa-solid fa-chart-pie fa-fw"></i><span class="nav-text">Dashboards</span></a></li>
-                    <li class="nav-item"><a href="#" data-tooltip="Adicionar conta"><i class="fa-solid fa-plus fa-fw"></i><span class="nav-text">Adicionar conta</span></a></li>
-                    <li class="nav-item"><a href="#" data-tooltip="Dúvidas"><i class="fa-solid fa-question-circle fa-fw"></i><span class="nav-text">Dúvidas</span></a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-toggle-wrapper">
-                <button class="sidebar-toggle" id="sidebar-toggle">
-                    <i class="fa-solid fa-chevron-left icon-collapse"></i>
-                    <i class="fa-solid fa-chevron-right icon-expand"></i>
-                </button>
-            </div>
-        </aside>
-
-        <nav class="mobile-nav" id="mobile-nav">
-             <ul>
-                <li class="nav-item active"><a href="#"><i class="fa-solid fa-calendar-alt fa-fw"></i><span>Próximas contas</span></a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-chart-pie fa-fw"></i><span>Dashboards</span></a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-plus fa-fw"></i><span>Adicionar conta</span></a></li>
-                <li class="nav-item"><a href="#"><i class="fa-solid fa-question-circle fa-fw"></i><span>Dúvidas</span></a></li>
+<div class="layout-container" id="layout-container">
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item"><a href="/src/screens/calendario/calendario.html" data-tooltip="Próximas contas"><i class="fa-solid fa-calendar-alt fa-fw"></i><span class="nav-text">Próximas contas</span></a></li>
+                <li class="nav-item"><a href="/src/screens/dashboards/dashboards.html" data-tooltip="Dashboards"><i class="fa-solid fa-chart-pie fa-fw"></i><span class="nav-text">Dashboards</span></a></li>
+                <li class="nav-item"><a href="/src/screens/add/add.html" data-tooltip="Adicionar conta"><i class="fa-solid fa-plus fa-fw"></i><span class="nav-text">Adicionar conta</span></a></li>
+                <li class="nav-item"><a href="/src/screens/chat/chat.html" data-tooltip="Dúvidas"><i class="fa-solid fa-question-circle fa-fw"></i><span class="nav-text">Dúvidas</span></a></li>
             </ul>
         </nav>
-        <div class="mobile-nav-backdrop hidden" id="mobile-nav-backdrop"></div>
+        <div class="sidebar-toggle-wrapper">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fa-solid fa-chevron-left icon-collapse"></i>
+                <i class="fa-solid fa-chevron-right icon-expand"></i>
+            </button>
+        </div>
+    </aside>
 
-
-        <main class="page-content" id="page-content">
-            <h1>Layout Completo e Funcional</h1>
-            <p>Este layout inclui o header superior fixo, a sidebar que minimiza e expande, e a responsividade para mobile com o menu hamburger.</p>
-            <div style="height: 1500px; background-color: #e0e0e0; margin-top: 20px;"></div>
-        </main>
-    </div>
-
-    <script src="header.js"></script>
-</body>
-</html>
+    <nav class="mobile-nav" id="mobile-nav">
+         <ul>
+            <li class="nav-item"><a href="/src/screens/calendario/calendario.html"><i class="fa-solid fa-calendar-alt fa-fw"></i><span>Próximas contas</span></a></li>
+            <li class="nav-item"><a href="/src/screens/dashboards/dashboards.html"><i class="fa-solid fa-chart-pie fa-fw"></i><span>Dashboards</span></a></li>
+            <li class="nav-item"><a href="/src/screens/add/add.html"><i class="fa-solid fa-plus fa-fw"></i><span>Adicionar conta</span></a></li>
+            <li class="nav-item"><a href="/src/screens/chat/chat.html"><i class="fa-solid fa-question-circle fa-fw"></i><span>Dúvidas</span></a></li>
+        </ul>
+    </nav>
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+</div>

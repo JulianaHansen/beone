@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeOne - Calendário</title>
+    <!-- HEADER CSS -->
+    <link rel="stylesheet" href="../../components/header/header.css">
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="calendario.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- O header será injetado aqui pelo main.js -->
+
+    <!-- CONTEÚDO DA PÁGINA DE CALENDÁRIO -->
+    <main class="page-content" id="page-content">
+        <div class="page-header">
+            <h1>Próximas Contas</h1>
+            <div class="view-toggle">
+                <button id="view-list-btn" class="toggle-btn active"><i class="fa-solid fa-list"></i> Lista</button>
+                <button id="view-calendar-btn" class="toggle-btn"><i class="fa-solid fa-calendar-days"></i> Calendário</button>
+            </div>
+        </div>
+
+        <!-- Container da Lista -->
+        <div id="list-view" class="view-container active">
+            <!-- As contas serão inseridas aqui pelo JS -->
+        </div>
+
+        <!-- Container do Calendário -->
+        <div id="calendar-view" class="view-container">
+            <div class="calendar-header">
+                <button id="prev-month-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <h2 id="current-month-year"></h2>
+                <button id="next-month-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-grid">
+                <div class="day-name">Dom</div>
+                <div class="day-name">Seg</div>
+                <div class="day-name">Ter</div>
+                <div class="day-name">Qua</div>
+                <div class="day-name">Qui</div>
+                <div class="day-name">Sex</div>
+                <div class="day-name">Sáb</div>
+                <!-- Os dias do calendário serão inseridos aqui pelo JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- LOADER PRINCIPAL -->
+    <script src="/main.js" defer></script>
+    <!-- PAGE JS -->
+    <script src="calendario.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+/* Estilos para o Header da Página */
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* Grid para os Gráficos */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+/* Estilo dos Cards dos Gráficos */
+.chart-card {
+    background-color: #ffffff;
+    border: 1px solid var(--grey-border);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.chart-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 1.2em;
+}
+
+.chart-container {
+    position: relative;
+    height: 350px; /* Altura padrão para os gráficos */
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}

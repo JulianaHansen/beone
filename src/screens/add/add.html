@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeOne - Adicionar Conta</title>
+    <!-- HEADER CSS -->
+    <link rel="stylesheet" href="../../components/header/header.css">
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="add.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- O header será injetado aqui pelo main.js -->
+
+    <!-- CONTEÚDO DA PÁGINA -->
+    <main class="page-content" id="page-content">
+        <div class="page-header">
+            <h1>Adicionar Nova Conta</h1>
+        </div>
+
+        <div class="upload-container">
+            <div id="upload-area" class="upload-area">
+                <input type="file" id="file-input" accept="image/*,application/pdf" capture="environment" hidden>
+                <div class="upload-icon">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <p class="upload-text">Arraste e solte um arquivo aqui ou clique para selecionar</p>
+                <p class="upload-hint">Em dispositivos móveis, você pode usar a câmera</p>
+                <button id="upload-button" class="upload-button">Selecionar Arquivo</button>
+            </div>
+
+            <div id="preview-area" class="preview-area hidden">
+                <h3>Pré-visualização</h3>
+                <img id="image-preview" src="#" alt="Pré-visualização da conta">
+                <div class="preview-actions">
+                    <button id="remove-file-btn" class="remove-button">Trocar Arquivo</button>
+                    <button id="submit-file-btn" class="submit-button">Cadastrar Conta</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- LOADER PRINCIPAL -->
+    <script src="/main.js" defer></script>
+    <!-- PAGE JS -->
+    <script src="add.js"></script>
+</body>
+</html>
