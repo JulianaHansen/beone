@@ -3,42 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeOne - Seu Assistente Financeiro</title>
+    <title>BeOne - Início</title>
+    <link rel="icon" href="src/assets/logo.png" type="image/png">
+    <!-- GLOBAL HEADER CSS -->
+    <link rel="stylesheet" href="/src/components/header/header.css">
+    <!-- PAGE CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>BeOne</h1>
-            <p>Bom dia! Domingo, 28 de Setembro de 2025</p>
+    <!-- O header será injetado aqui pelo main.js -->
+
+    <!-- CONTEÚDO DA PÁGINA INICIAL -->
+    <main class="page-content" id="page-content">
+        <div class="page-header">
+            <h1>Bem-vindo(a) de volta!</h1>
         </div>
-    </header>
 
-    <main class="container">
-        <section id="dashboard-summary" class="dashboard-card">
-            <h2>Resumo de Setembro</h2>
-            <div class="summary-details">
-                <div>
-                    <span>Total a Vencer</span>
-                    <strong id="total-due">R$ 0,00</strong>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="card-icon icon-pending">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
                 </div>
-                <div>
-                    <span>Total Pago</span>
-                    <strong id="total-paid">R$ 0,00</strong>
+                <div class="card-info">
+                    <p>Contas a Vencer (Próx. 30 dias)</p>
+                    <strong id="due-bills-amount">R$ 2.299,90</strong>
                 </div>
             </div>
-        </section>
-
-        <section id="bills-section">
-            <div class="section-header">
-                <h2>Suas Contas</h2>
-                <div class="view-toggle">
-                    <button id="view-list" class="active">Lista</button>
-                    <button id="view-calendar">Calendário</button>
+            <div class="summary-card">
+                <div class="card-icon icon-paid">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+                <div class="card-info">
+                    <p>Total Pago (Setembro)</p>
+                    <strong id="paid-bills-amount">R$ 809,95</strong>
                 </div>
             </div>
-            <div id="bill-list">
+            <div class="summary-card">
+                <div class="card-icon icon-overdue">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="card-info">
+                    <p>Contas Vencidas</p>
+                    <strong id="overdue-bills-amount">R$ 120,00</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h2>Ações Rápidas</h2>
+            <div class="actions-container">
+                <a href="/src/screens/add/add.html" class="action-button">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Adicionar Conta</span>
+                </a>
+                <a href="/src/screens/calendario/calendario.html" class="action-button">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Ver Calendário</span>
+                </a>
+                <a href="/src/screens/dashboards/dashboards.html" class="action-button">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Ver Dashboards</span>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- LOADER PRINCIPAL -->
+    <script src="main.js" defer></script>
+    <!-- A lógica para os valores do dashboard pode ser adicionada em um JS específico -->
+
+</body>
+</html>

@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DADOS MOCKADOS DAS CONTAS ---
+    // --- DADOS MOCKADOS DAS CONTAS (COM NOVOS STATUS) ---
     const mockBills = [
-        { id: 1, name: 'Conta de Luz - Eletropaulo', dueDate: '2025-09-05', value: 150.75, status: 'paid', icon: 'fa-lightbulb' },
-        { id: 2, name: 'Plano de Internet - Vivo Fibra', dueDate: '2025-09-10', value: 99.90, status: 'paid', icon: 'fa-wifi' },
-        { id: 3, name: 'Aluguel - Apt 123', dueDate: '2025-09-10', value: 2200.00, status: 'pending', icon: 'fa-house' },
-        { id: 4, name: 'Fatura Cartão de Crédito - Nubank', dueDate: '2025-09-15', value: 850.40, status: 'pending', icon: 'fa-credit-card' },
-        { id: 5, name: 'Conta de Água - Sabesp', dueDate: '2025-09-20', value: 85.50, status: 'pending', icon: 'fa-tint' },
-        { id: 6, name: 'Mensalidade Academia', dueDate: '2025-08-28', value: 120.00, status: 'overdue', icon: 'fa-dumbbell' },
-        { id: 7, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'pending', icon: 'fa-tv' },
-        { id: 8, name: 'Conta de Gás - Comgás', dueDate: '2025-10-04', value: 75.00, status: 'pending', icon: 'fa-fire' },
+        { id: 1, name: 'Conta de Luz', dueDate: '2025-09-05', value: 150.75, status: 'Paga', icon: 'fa-lightbulb' },
+        { id: 2, name: 'Internet', dueDate: '2025-09-10', value: 99.90, status: 'Paga', icon: 'fa-wifi' },
+        { id: 3, name: 'Aluguel', dueDate: '2025-09-10', value: 2200.00, status: 'A Vencer', icon: 'fa-house' },
+        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-09-15', value: 850.40, status: 'A Vencer', icon: 'fa-credit-card' },
+        { id: 5, name: 'Conta de Água', dueDate: '2025-09-20', value: 85.50, status: 'Débito Automático Inferido', icon: 'fa-tint' },
+        { id: 6, name: 'Academia', dueDate: '2025-08-28', value: 120.00, status: 'Vencida', icon: 'fa-dumbbell' },
+        { id: 7, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'Agendada', icon: 'fa-tv' },
+        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'A Vencer', icon: 'fa-fire' },
     ];
 
     // --- SELETORES DE ELEMENTOS ---
@@ -25,12 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ESTADO ---
     let currentDate = new Date();
 
+    // --- FUNÇÃO UTILITÁRIA ---
+    function getStatusClass(status) {
+        return status.toLowerCase().replace(/ /g, '-').replace(/á/g, 'a').replace(/ç/g, 'c').replace(/ê/g, 'e');
+    }
+
     // --- LÓGICA DE TROCA DE VISUALIZAÇÃO ---
     function activateView(view) {
-        // Botões
         viewListBtn.classList.toggle('active', view === 'list');
         viewCalendarBtn.classList.toggle('active', view === 'calendar');
-        // Containers
         listView.classList.toggle('active', view === 'list');
         calendarView.classList.toggle('active', view === 'calendar');
     }
@@ -40,18 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- RENDERIZAÇÃO DA LISTA ---
     function renderListView(bills) {
-        listView.innerHTML = ''; // Limpa a lista
+        listView.innerHTML = '';
         if (bills.length === 0) {
             listView.innerHTML = '<p>Nenhuma conta para exibir.</p>';
             return;
         }
-
         const sortedBills = bills.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-
         sortedBills.forEach(bill => {
-            const billDate = new Date(bill.dueDate + 'T00:00:00'); // Corrige problema de timezone
+            const billDate = new Date(bill.dueDate + 'T00:00:00');
             const formattedDate = billDate.toLocaleDateString('pt-BR');
             const formattedValue = bill.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const statusClass = getStatusClass(bill.status);
 
             const billElement = document.createElement('div');
             billElement.className = 'bill-item';
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="bill-value">
                     <p class="value">${formattedValue}</p>
-                    <p class="status ${bill.status}">${bill.status.charAt(0).toUpperCase() + bill.status.slice(1)}</p>
+                    <p class="status ${statusClass}">${bill.status}</p>
                 </div>
             `;
             listView.appendChild(billElement);
@@ -74,8 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- RENDERIZAÇÃO DO CALENDÁRIO ---
     function renderCalendar(year, month, bills) {
-        calendarGrid.innerHTML = ''; // Limpa o grid
-        // Adiciona os nomes dos dias novamente
+        calendarGrid.innerHTML = '';
         const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
         dayNames.forEach(name => {
             const dayNameEl = document.createElement('div');
@@ -90,14 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentMonthYearEl.textContent = firstDayOfMonth.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
 
-        // Preenche os dias vazios do início
         for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
             const emptyCell = document.createElement('div');
             emptyCell.className = 'day-cell other-month';
             calendarGrid.appendChild(emptyCell);
         }
 
-        // Preenche os dias do mês
         for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
             const cellDate = new Date(year, month, day);
             const dayCell = document.createElement('div');
@@ -111,15 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
             dayNumber.textContent = day;
             dayCell.appendChild(dayNumber);
 
-            // Adiciona as contas do dia
             const billsForDay = bills.filter(bill => {
                 const billDate = new Date(bill.dueDate + 'T00:00:00');
                 return billDate.getFullYear() === year && billDate.getMonth() === month && billDate.getDate() === day;
             });
 
             billsForDay.forEach(bill => {
+                const statusClass = getStatusClass(bill.status);
                 const billEl = document.createElement('div');
-                billEl.className = `calendar-bill ${bill.status}`;
+                billEl.className = `calendar-bill ${statusClass}`;
                 billEl.textContent = bill.name;
                 billEl.title = `${bill.name} - ${bill.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
                 dayCell.appendChild(billEl);
@@ -144,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         renderListView(mockBills);
         renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), mockBills);
-        activateView('list'); // Começa na visualização de lista
+        activateView('list');
     }
 
     init();

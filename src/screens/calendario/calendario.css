@@ -114,20 +114,12 @@
     font-weight: 500;
 }
 
-.status.paid {
-    background-color: #e3fcef;
-    color: #067647;
-}
-
-.status.pending {
-    background-color: #fffae6;
-    color: #974f0c;
-}
-
-.status.overdue {
-    background-color: #ffebe6;
-    color: #de350b;
-}
+/* NOVOS ESTILOS DE STATUS */
+.status.paga { background-color: #e3fcef; color: #067647; }
+.status.a-vencer { background-color: #fffae6; color: #974f0c; }
+.status.vencida { background-color: #ffebe6; color: #de350b; }
+.status.agendada { background-color: #f0f4ff; color: #0052cc; }
+.status.debito-automatico-inferido { background-color: #e6fcff; color: #087b98; }
 
 
 /* --- ESTILOS DA VISUALIZAÇÃO EM CALENDÁRIO --- */
@@ -224,6 +216,9 @@
     text-overflow: ellipsis;
 }
 
-.calendar-bill.paid { background-color: #e3fcef; color: #067647; }
-.calendar-bill.pending { background-color: #fffae6; color: #974f0c; }
-.calendar-bill.overdue { background-color: #ffebe6; color: #de350b; }
+/* NOVOS ESTILOS DE STATUS PARA O CALENDÁRIO */
+.calendar-bill.paga { background-color: #e3fcef; color: #067647; }
+.calendar-bill.a-vencer { background-color: #fffae6; color: #974f0c; }
+.calendar-bill.vencida { background-color: #ffebe6; color: #de350b; }
+.calendar-bill.agendada { background-color: #f0f4ff; color: #0052cc; }
+.calendar-bill.debito-automatico-inferido { background-color: #e6fcff; color: #087b98; }

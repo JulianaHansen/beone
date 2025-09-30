@@ -1,18 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DADOS MOCKADOS DAS CONTAS (COM CATEGORIA) ---
+    // --- DADOS MOCKADOS DAS CONTAS (COM NOVOS STATUS) ---
     const mockBills = [
-        { id: 1, name: 'Conta de Luz', dueDate: '2025-09-05', value: 150.75, status: 'paid', category: 'Moradia', icon: 'fa-lightbulb' },
-        { id: 2, name: 'Internet', dueDate: '2025-09-10', value: 99.90, status: 'paid', category: 'Utilidades', icon: 'fa-wifi' },
-        { id: 3, name: 'Aluguel', dueDate: '2025-09-10', value: 2200.00, status: 'pending', category: 'Moradia', icon: 'fa-house' },
-        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-09-15', value: 850.40, status: 'pending', category: 'Finanças', icon: 'fa-credit-card' },
-        { id: 5, name: 'Conta de Água', dueDate: '2025-09-20', value: 85.50, status: 'pending', category: 'Moradia', icon: 'fa-tint' },
-        { id: 6, name: 'Academia', dueDate: '2025-08-28', value: 120.00, status: 'overdue', category: 'Saúde', icon: 'fa-dumbbell' },
-        { id: 7, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'pending', category: 'Lazer', icon: 'fa-tv' },
-        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'pending', category: 'Moradia', icon: 'fa-fire' },
-        { id: 9, name: 'Supermercado', dueDate: '2025-08-15', value: 650.00, status: 'paid', category: 'Alimentação', icon: 'fa-shopping-cart' },
-        { id: 10, name: 'Farmácia', dueDate: '2025-07-22', value: 75.30, status: 'paid', category: 'Saúde', icon: 'fa-pills' },
-        { id: 11, name: 'Cinema', dueDate: '2025-07-18', value: 60.00, status: 'paid', category: 'Lazer', icon: 'fa-film' },
+        { id: 1, name: 'Conta de Luz', dueDate: '2025-09-05', value: 150.75, status: 'Paga', category: 'Moradia', icon: 'fa-lightbulb' },
+        { id: 2, name: 'Internet', dueDate: '2025-09-10', value: 99.90, status: 'Paga', category: 'Utilidades', icon: 'fa-wifi' },
+        { id: 3, name: 'Aluguel', dueDate: '2025-09-10', value: 2200.00, status: 'A Vencer', category: 'Moradia', icon: 'fa-house' },
+        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-09-15', value: 850.40, status: 'A Vencer', category: 'Finanças', icon: 'fa-credit-card' },
+        { id: 5, name: 'Conta de Água', dueDate: '2025-09-20', value: 85.50, status: 'Débito Automático Inferido', category: 'Moradia', icon: 'fa-tint' },
+        { id: 6, name: 'Academia', dueDate: '2025-08-28', value: 120.00, status: 'Vencida', category: 'Saúde', icon: 'fa-dumbbell' },
+        { id: 7, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'Agendada', category: 'Lazer', icon: 'fa-tv' },
+        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'A Vencer', category: 'Moradia', icon: 'fa-fire' },
     ];
 
     // --- PALETA DE CORES ---
@@ -39,9 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- FUNÇÕES DE PROCESSAMENTO DE DADOS ---
 
     function processStatusData(bills) {
-        const statusCounts = { paid: 0, pending: 0, overdue: 0 };
+        const statusCounts = { 'Paga': 0, 'A Vencer': 0, 'Vencida': 0, 'Agendada': 0, 'Débito Automático Inferido': 0 };
         bills.forEach(bill => {
-            if (statusCounts[bill.status] !== undefined) statusCounts[bill.status]++;
+            if (statusCounts[bill.status] !== undefined) {
+                statusCounts[bill.status]++;
+            }
         });
         return statusCounts;
     }
@@ -78,12 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
         new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Pagas', 'Pendentes', 'Vencidas'],
+                labels: ['Paga', 'A Vencer', 'Vencida', 'Agendada', 'Débito Automático'],
                 datasets: [{
                     label: 'Contas por Status',
-                    data: [data.paid, data.pending, data.overdue],
-                    backgroundColor: [colorPaletteRGBA.lightBlue, colorPaletteRGBA.lightPurple, colorPaletteRGBA.darkPurple],
-                    borderColor: [colorPalette.lightBlue, colorPalette.lightPurple, colorPalette.darkPurple],
+                    data: [data.Paga, data['A Vencer'], data.Vencida, data.Agendada, data['Débito Automático Inferido']],
+                    backgroundColor: [colorPaletteRGBA.lightBlue, colorPaletteRGBA.lightPurple, colorPaletteRGBA.darkPurple, colorPaletteRGBA.cyan, colorPaletteRGBA.teal],
+                    borderColor: [colorPalette.lightBlue, colorPalette.lightPurple, colorPalette.darkPurple, colorPalette.cyan, colorPalette.teal],
                     borderWidth: 1
                 }]
             },

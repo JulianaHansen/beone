@@ -15,7 +15,6 @@ body {
     margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--background-light);
-    padding-top: var(--header-height); 
 }
 
 /* --- 2. HEADER SUPERIOR (HORIZONTAL) --- */
@@ -24,6 +23,7 @@ body {
 .header-left, .logo-area, .user-area { display: flex; align-items: center; }
 .logo-img { height: 32px; width: 32px; margin-right: 10px; }
 .logo-name { font-size: 1.5em; font-weight: bold; }
+.logo-link { text-decoration: none; color: inherit; display: flex; align-items: center; }
 .icon-button { background: none; border: none; font-size: 1.4em; color: var(--text-secondary); cursor: pointer; padding: 5px; }
 .notification-button { margin-right: 15px; }
 .profile-container { position: relative; }
@@ -58,7 +58,7 @@ body {
 .sidebar-nav .nav-item i { font-size: 1.2em; margin-right: 20px; }
 .sidebar-nav .nav-text { transition: opacity 0.2s ease; }
 
-.sidebar-toggle-wrapper { padding: 20px; display: flex; min-height: 50px; }
+.sidebar-toggle-wrapper { padding: 20px; display: flex; justify-content: flex-end; min-height: 50px; }
 .sidebar-toggle { background: #f4f5f7; border: 1px solid var(--grey-border); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
 
 /* LÓGICA CORRIGIDA PARA AS SETAS */
@@ -73,6 +73,10 @@ body {
 .sidebar.collapsed .nav-item i { margin-right: 0; }
 
 .sidebar.collapsed .nav-item a:hover::after { content: attr(data-tooltip); position: absolute; left: 70px; background-color: var(--text-primary); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; z-index: 100; }
+
+.layout-container {
+    padding-top: var(--header-height);
+}
 
 .page-content { margin-left: var(--sidebar-width); padding: 30px; transition: margin-left 0.3s ease; }
 .layout-container.sidebar-collapsed .page-content { margin-left: var(--sidebar-width-collapsed); }
@@ -96,47 +100,4 @@ body.mobile-nav-is-open .hamburger-button .icon-close { display: block; }
     .hamburger-button { display: flex; }
     .page-content { margin-left: 0; }
     .logo-name { display: none; }
-}
-
-/* --- LÓGICA CORRIGIDA PARA O BOTÃO E AS SETAS --- */
-
-/* Wrapper para posicionar o botão no canto inferior direito */
-.sidebar-toggle-wrapper {
-    padding: 20px;
-    display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo (o botão) à direita */
-}
-
-/* Estilo do botão */
-.sidebar-toggle {
-    background: #f4f5f7;
-    border: 1px solid var(--grey-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-secondary);
-    font-size: 1em;
-}
-
-/* LÓGICA DE EXIBIÇÃO DAS SETAS */
-
-/* Por padrão, a seta de expandir (direita) fica escondida */
-.sidebar-toggle .icon-expand {
-    display: none;
-}
-/* E a de recolher (esquerda) aparece */
-.sidebar-toggle .icon-collapse {
-    display: block;
-}
-
-/* Quando a sidebar estiver minimizada... */
-.sidebar.collapsed .sidebar-toggle .icon-collapse {
-    display: none; /* ...esconde a seta para a esquerda */
-}
-.sidebar.collapsed .sidebar-toggle .icon-expand {
-    display: block; /* ...e mostra a seta para a direita */
 }

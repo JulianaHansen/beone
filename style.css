@@ -1,148 +1,102 @@
-:root {
-    --primary-color: #0052cc;
-    --background-color: #f4f5f7;
-    --card-background: #ffffff;
-    --text-color: #172b4d;
-    --text-light: #5e6c84;
-    --green: #36b37e;
-    --yellow: #ffab00;
-    --red: #de350b;
-    --blue: #0052cc;
-    --grey: #5e6c84;
+/* Estilos para o Header da Página */
+.page-header {
+    margin-bottom: 30px;
 }
 
-* {
+.page-header h1 {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    color: var(--text-primary);
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+/* Grid de Resumo */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px 0;
-}
-
-header h1 {
-    font-weight: 500;
-}
-
-.dashboard-card {
-    background-color: var(--card-background);
+.summary-card {
+    background-color: #fff;
+    border: 1px solid var(--grey-border);
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    color: #fff;
+}
+
+.icon-pending { background-color: #fffae6; color: #974f0c; } /* Amarelo */
+.icon-paid { background-color: #e3fcef; color: #067647; } /* Verde */
+.icon-overdue { background-color: #ffebe6; color: #de350b; } /* Vermelho */
+
+.card-info p {
+    margin: 0 0 8px 0;
+    color: var(--text-secondary);
+    font-size: 1em;
+}
+
+.card-info strong {
+    font-size: 1.8em;
+    color: var(--text-primary);
+}
+
+/* Ações Rápidas */
+.quick-actions h2 {
     margin-bottom: 20px;
+    color: var(--text-primary);
 }
 
-.summary-details {
+.actions-container {
     display: flex;
-    justify-content: space-around;
-    text-align: center;
-    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.summary-details span {
-    display: block;
-    color: var(--text-light);
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
-
-.summary-details strong {
-    font-size: 1.5em;
-    font-weight: 500;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.view-toggle button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
-.view-toggle button.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-.bill-card {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-background);
+.action-button {
+    background-color: #f4f5f7;
+    border: 1px solid var(--grey-border);
     border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border-left: 5px solid;
-}
-
-.bill-card.status-paga { border-color: var(--green); }
-.bill-card.status-a-pagar { border-color: var(--yellow); }
-.bill-card.status-vencida { border-color: var(--red); }
-.bill-card.status-debito-automatico { border-color: var(--grey); }
-
-.bill-info {
-    flex-grow: 1;
-}
-
-.bill-info h3 {
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text-primary);
     font-weight: 500;
-    font-size: 1.1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 180px;
+    height: 120px;
+    text-align: center;
+    transition: all 0.2s ease;
 }
 
-.bill-info p {
-    color: var(--text-light);
-    font-size: 0.9em;
+.action-button:hover {
+    background-color: #fff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
 }
 
-.bill-value {
-    text-align: right;
-}
-
-.bill-value strong {
-    font-size: 1.2em;
-    font-weight: 500;
-}
-
-.bill-actions button {
-    margin-left: 15px;
-    padding: 10px 15px;
-    border: none;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-}
-.bill-actions button:hover {
-    opacity: 0.9;
-}
-
-.anomaly-alert {
-    color: var(--red);
-    font-weight: bold;
-    font-size: 0.8em;
-    margin-top: 5px;
+.action-button i {
+    font-size: 2em;
 }
