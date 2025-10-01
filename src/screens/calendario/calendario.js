@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DADOS MOCKADOS DAS CONTAS (COM NOVOS STATUS) ---
     const mockBills = [
-        { id: 1, name: 'Conta de Luz', dueDate: '2025-09-05', value: 150.75, status: 'Paga', icon: 'fa-lightbulb' },
-        { id: 2, name: 'Internet', dueDate: '2025-09-10', value: 99.90, status: 'Paga', icon: 'fa-wifi' },
-        { id: 3, name: 'Aluguel', dueDate: '2025-09-10', value: 2200.00, status: 'A Vencer', icon: 'fa-house' },
-        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-09-15', value: 850.40, status: 'A Vencer', icon: 'fa-credit-card' },
-        { id: 5, name: 'Conta de Água', dueDate: '2025-09-20', value: 85.50, status: 'Débito Automático Inferido', icon: 'fa-tint' },
-        { id: 6, name: 'Academia', dueDate: '2025-08-28', value: 120.00, status: 'Vencida', icon: 'fa-dumbbell' },
-        { id: 7, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'Agendada', icon: 'fa-tv' },
-        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'A Vencer', icon: 'fa-fire' },
+        { id: 1, name: 'Conta de Luz', dueDate: '2025-10-05', value: 150.75, status: 'Agendada', icon: 'fa-lightbulb' },
+        { id: 2, name: 'Internet', dueDate: '2025-10-10', value: 99.90, status: 'Débito Automático', icon: 'fa-wifi' },
+        { id: 3, name: 'Aluguel', dueDate: '2025-10-10', value: 2200.00, status: 'A Vencer', icon: 'fa-house' },
+        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-10-15', value: 850.40, status: 'Paga', icon: 'fa-credit-card' },
+        { id: 5, name: 'Conta de Água', dueDate: '2025-10-20', value: 85.50, status: 'A Vencer', icon: 'fa-tint' },
+        { id: 6, name: 'Academia', dueDate: '2025-09-28', value: 120.00, status: 'Vencida', icon: 'fa-dumbbell' },
+        { id: 7, name: 'Netflix', dueDate: '2025-11-01', value: 55.90, status: 'Agendada', icon: 'fa-tv' },
+        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'Paga', icon: 'fa-fire' },
     ];
 
     // --- SELETORES DE ELEMENTOS ---
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const statusClass = getStatusClass(bill.status);
                 const billEl = document.createElement('div');
                 billEl.className = `calendar-bill ${statusClass}`;
-                billEl.textContent = bill.name;
+                billEl.innerHTML = `<span class="bill-name">${bill.name}</span><span class="bill-status">${bill.status}</span>`;
                 billEl.title = `${bill.name} - ${bill.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
                 dayCell.appendChild(billEl);
             });

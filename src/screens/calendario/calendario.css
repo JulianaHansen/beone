@@ -214,6 +214,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-bill .bill-name {
+    font-weight: 600;
+}
+
+.calendar-bill .bill-status {
+    font-size: 0.9em;
+    opacity: 0.8;
 }
 
 /* NOVOS ESTILOS DE STATUS PARA O CALENDÁRIO */
