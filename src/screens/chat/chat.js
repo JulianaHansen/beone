@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA DO BOT ---
     const botResponses = {
         default: "Desculpe, não entendi. Você pode tentar reformular a pergunta? Eu posso ajudar com dúvidas sobre vencimento, status e como pagar suas contas.",
-        greeting: "Olá! Eu sou o BeOne Assistant. Como posso ajudar você hoje?",
+        greeting: "Olá! Eu sou a Bia, sua assistente do BeOne. Como posso ajudar você hoje?",
         vencimento: "Para saber o vencimento de uma conta, vá para a tela 'Próximas Contas'. Lá você pode ver todas as suas contas em uma lista ou em um calendário.",
         pagar: "No momento, este sistema não processa pagamentos. Você pode usar os detalhes da conta para pagar através do seu banco ou aplicativo de preferência.",
         status: "O status de uma conta (Paga, Pendente ou Vencida) é mostrado na tela de 'Próximas Contas' e também nos dashboards.",
