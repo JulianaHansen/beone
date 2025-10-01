@@ -8,42 +8,171 @@
     color: var(--text-primary);
 }
 
-/* Grid para os Gráficos */
+/* Grid Principal do Dashboard */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
 }
 
-/* Estilo dos Cards dos Gráficos */
-.chart-card {
+/* Estilo Genérico dos Widgets */
+.widget {
     background-color: #ffffff;
     border: 1px solid var(--grey-border);
     border-radius: 8px;
     padding: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.chart-card h3 {
+.widget-title {
     margin-top: 0;
     margin-bottom: 20px;
-    text-align: center;
+    font-size: 1.3em;
     color: var(--text-primary);
-    font-size: 1.2em;
+}
+
+/* 1. Widget de KPIs */
+.kpi-widget {
+    grid-column: 1 / -1; /* Ocupa a largura total */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.overdue-card .kpi-value {
+    color: #de350b;
+}
+
+.kpi-card {
+    background-color: #fff;
+    border: 1px solid var(--grey-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.kpi-title {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin: 0 0 10px 0;
+}
+
+.kpi-value {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.kpi-subvalue {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin: 5px 0 0 0;
+}
+
+/* 2. Widget do Assistente */
+.assistant-widget {
+    grid-column: 1 / -1; /* Ocupa a largura total */
+}
+
+.insights-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.insight-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+}
+
+.insight-card.alerta {
+    background-color: #fffbe6;
+    border-color: #ffc400;
+}
+
+.insight-card.preditivo {
+    background-color: #f0f4ff;
+    border-color: #0052cc;
+}
+
+.insight-card.economia {
+    background-color: #e3fcef;
+    border-color: #067647;
+}
+
+.insight-icon {
+    font-size: 1.5em;
+}
+
+.insight-card.alerta .insight-icon { color: #ffc400; }
+.insight-card.preditivo .insight-icon { color: #0052cc; }
+.insight-card.economia .insight-icon { color: #067647; }
+
+.insight-text {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* 3, 4, 5. Widgets de Gráfico */
+.chart-widget {
+    /* Cada um ocupa uma célula do grid */
 }
 
 .chart-container {
     position: relative;
-    height: 350px; /* Altura padrão para os gráficos */
+    height: 300px;
+}
+
+/* 5. Seletor de Categoria */
+.category-selector-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#category-selector {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--grey-border);
+    font-size: 0.9em;
+}
+
+/* 6. Widget de Desempenho de Pagamento */
+#payment-insight {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95em;
+    line-height: 1.5;
 }
 
 /* Responsividade */
-@media (max-width: 480px) {
+@media (max-width: 992px) {
     .dashboard-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+        grid-template-columns: 1fr; /* Uma coluna para tablets e abaixo */
     }
 
-    .chart-container {
-        height: 300px;
+    .kpi-widget {
+        grid-template-columns: 1fr; /* Empilha os KPIs em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .widget {
+        padding: 15px;
+    }
+
+    .kpi-value {
+        font-size: 1.8em;
     }
 }

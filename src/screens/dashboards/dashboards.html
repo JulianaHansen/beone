@@ -19,28 +19,79 @@
     <!-- CONTEÚDO DA PÁGINA DE DASHBOARDS -->
     <main class="page-content" id="page-content">
         <div class="page-header">
-            <h1>Dashboards</h1>
+            <h1>Dashboard Financeiro</h1>
         </div>
 
         <div class="dashboard-grid">
-            <div class="chart-card">
-                <h3>Contas por Status</h3>
-                <div class="chart-container">
-                    <canvas id="bills-by-status-chart"></canvas>
+
+            <!-- 1. WIDGET: RESUMO DO MÊS ATUAL -->
+            <div class="widget kpi-widget">
+                <div class="kpi-card">
+                    <h3 id="total-due-title" class="kpi-title">Total a Vencer em Outubro</h3>
+                    <p id="total-due" class="kpi-value">R$ 0,00</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 id="total-paid-title" class="kpi-title">Total Já Pago em Outubro</h3>
+                    <p id="total-paid" class="kpi-value">R$ 0,00</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="kpi-title">Próximo Vencimento</h3>
+                    <p id="next-due" class="kpi-value">--/--/----</p>
+                    <p id="next-due-value" class="kpi-subvalue">R$ 0,00</p>
+                </div>
+                <div class="kpi-card overdue-card">
+                    <h3 class="kpi-title">Total em Atraso</h3>
+                    <p id="total-overdue" class="kpi-value">R$ 0,00</p>
                 </div>
             </div>
-            <div class="chart-card">
-                <h3>Despesas Mensais (Últimos 6 meses)</h3>
+
+            <!-- 3. WIDGET: DISTRIBUIÇÃO DE GASTOS -->
+            <div class="widget chart-widget">
+                <h2 class="widget-title">Distribuição de Gastos (Mês Atual)</h2>
                 <div class="chart-container">
-                    <canvas id="monthly-expenses-chart"></canvas>
+                    <canvas id="category-donut-chart"></canvas>
                 </div>
             </div>
-             <div class="chart-card">
-                <h3>Gastos por Categoria</h3>
+
+            <!-- 4. WIDGET: EVOLUÇÃO MENSAL DOS GASTOS -->
+            <div class="widget chart-widget">
+                <h2 class="widget-title">Evolução Mensal dos Gastos (Últimos 6 Meses)</h2>
                 <div class="chart-container">
-                    <canvas id="expenses-by-category-chart"></canvas>
+                    <canvas id="monthly-bar-chart"></canvas>
                 </div>
             </div>
+
+            <!-- 5. WIDGET: ANÁLISE DETALHADA POR CATEGORIA -->
+            <div class="widget chart-widget">
+                <h2 class="widget-title">Análise Detalhada por Categoria</h2>
+                <div class="category-selector-container">
+                    <label for="category-selector">Selecione a Categoria:</label>
+                    <select id="category-selector">
+                        <!-- Opções de categoria serão inseridas aqui pelo JS -->
+                    </select>
+                </div>
+                <div class="chart-container">
+                    <canvas id="category-line-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- 6. WIDGET: DESEMPENHO DE PAGAMENTO MENSAL -->
+            <div class="widget payment-performance-widget">
+                <h2 class="widget-title">Desempenho de Pagamento (Mês Anterior)</h2>
+                <div class="chart-container">
+                    <canvas id="payment-performance-chart"></canvas>
+                </div>
+                <p id="payment-insight" class="insight-text"></p>
+            </div>
+
+            <!-- 2. WIDGET: SEU ASSISTENTE RECOMENDA -->
+            <div class="widget assistant-widget">
+                <h2 class="widget-title">Seu Assistente Recomenda 💡</h2>
+                <div id="assistant-insights" class="insights-container">
+                    <!-- Insights serão inseridos aqui pelo JS -->
+                </div>
+            </div>
+
         </div>
     </main>
 
