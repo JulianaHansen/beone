@@ -8,14 +8,54 @@
     color: var(--text-primary);
 }
 
+/* Estilos para os Botões de Toggle */
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    background-color: #f4f5f7;
+    color: var(--text-secondary);
+    border: 1px solid var(--grey-border);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.toggle-btn:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.toggle-btn:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-left: none;
+}
+
+.toggle-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
 /* Container Principal */
-.upload-container {
+.upload-container, .manual-entry-container {
     background-color: #fff;
     border: 1px solid var(--grey-border);
     border-radius: 8px;
     padding: 30px;
     max-width: 800px;
     margin: 0 auto; /* Centraliza o container */
+}
+
+.manual-entry-container.hidden,
+.upload-container.hidden {
+    display: none;
 }
 
 /* Área de Upload */
@@ -124,4 +164,43 @@
 
 .submit-button:hover {
     background-color: #0052cc;
+}
+
+/* Formulário de Entrada Manual */
+.manual-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--grey-border);
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 101, 255, 0.2);
+}
+
+#submit-manual-btn {
+    justify-self: end; /* Alinha o botão à direita */
+    width: auto;
 }

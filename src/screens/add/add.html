@@ -22,7 +22,12 @@
             <h1>Adicionar Nova Conta</h1>
         </div>
 
-        <div class="upload-container">
+        <div class="toggle-buttons">
+            <button id="show-upload-btn" class="toggle-btn active">Upload de Arquivo</button>
+            <button id="show-manual-btn" class="toggle-btn">Entrada Manual</button>
+        </div>
+
+        <div id="upload-container" class="upload-container">
             <div id="upload-area" class="upload-area">
                 <input type="file" id="file-input" accept="image/*,application/pdf" capture="environment" hidden>
                 <div class="upload-icon">
@@ -41,6 +46,37 @@
                     <button id="submit-file-btn" class="submit-button">Cadastrar Conta</button>
                 </div>
             </div>
+        </div>
+
+        <div id="manual-entry-container" class="manual-entry-container hidden">
+            <form id="manual-form" class="manual-form">
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <input type="text" id="description" placeholder="Ex: Conta de Luz" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Valor (R$)</label>
+                    <input type="number" id="amount" placeholder="Ex: 150,00" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="due-date">Data de Vencimento</label>
+                    <input type="date" id="due-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="moradia">Moradia</option>
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="saude">Saúde</option>
+                        <option value="lazer">Lazer</option>
+                        <option value="educacao">Educação</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <button type="submit" id="submit-manual-btn" class="submit-button">Cadastrar Conta</button>
+            </form>
         </div>
 
     </main>
