@@ -1,17 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DADOS MOCKADOS DAS CONTAS (COM NOVOS STATUS) ---
-    const mockBills = [
-        { id: 1, name: 'Conta de Luz', dueDate: '2025-10-05', value: 150.75, status: 'Agendada', icon: 'fa-lightbulb' },
-        { id: 2, name: 'Internet', dueDate: '2025-10-10', value: 99.90, status: 'Débito Automático', icon: 'fa-wifi' },
-        { id: 3, name: 'Aluguel', dueDate: '2025-10-10', value: 2200.00, status: 'A Vencer', icon: 'fa-house' },
-        { id: 4, name: 'Cartão de Crédito', dueDate: '2025-10-15', value: 850.40, status: 'Paga', icon: 'fa-credit-card' },
-        { id: 5, name: 'Conta de Água', dueDate: '2025-10-20', value: 85.50, status: 'A Vencer', icon: 'fa-tint' },
-        { id: 6, name: 'Academia', dueDate: '2025-09-28', value: 120.00, status: 'Vencida', icon: 'fa-dumbbell' },
-        { id: 7, name: 'Netflix', dueDate: '2025-11-01', value: 55.90, status: 'Agendada', icon: 'fa-tv' },
-        { id: 8, name: 'Gás', dueDate: '2025-10-04', value: 75.00, status: 'Paga', icon: 'fa-fire' },
-    ];
-
     // --- SELETORES DE ELEMENTOS ---
     const viewListBtn = document.getElementById('view-list-btn');
     const viewCalendarBtn = document.getElementById('view-calendar-btn');
@@ -25,12 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ESTADO ---
     let currentDate = new Date();
 
-    // --- FUNÇÃO UTILITÁRIA ---
+    // --- FUNÇÕES ---
     function getStatusClass(status) {
         return status.toLowerCase().replace(/ /g, '-').replace(/á/g, 'a').replace(/ç/g, 'c').replace(/ê/g, 'e');
     }
 
-    // --- LÓGICA DE TROCA DE VISUALIZAÇÃO ---
+    function getFilteredBills() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return window.mockBills.filter(bill => {
+            const dueDate = new Date(bill.dueDate + 'T00:00:00');
+            return dueDate >= today || bill.status === 'Vencida';
+        });
+    }
+
     function activateView(view) {
         viewListBtn.classList.toggle('active', view === 'list');
         viewCalendarBtn.classList.toggle('active', view === 'calendar');
@@ -38,10 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         calendarView.classList.toggle('active', view === 'calendar');
     }
 
-    viewListBtn.addEventListener('click', () => activateView('list'));
-    viewCalendarBtn.addEventListener('click', () => activateView('calendar'));
-
-    // --- RENDERIZAÇÃO DA LISTA ---
     function renderListView(bills) {
         listView.innerHTML = '';
         if (bills.length === 0) {
@@ -74,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- RENDERIZAÇÃO DO CALENDÁRIO ---
     function renderCalendar(year, month, bills) {
         calendarGrid.innerHTML = '';
         const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -128,21 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- NAVEGAÇÃO DO CALENDÁRIO ---
+    // --- EVENT LISTENERS ---
+    viewListBtn.addEventListener('click', () => activateView('list'));
+    viewCalendarBtn.addEventListener('click', () => activateView('calendar'));
+
     prevMonthBtn.addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), mockBills);
+        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), getFilteredBills());
     });
 
     nextMonthBtn.addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), mockBills);
+        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), getFilteredBills());
     });
 
     // --- INICIALIZAÇÃO ---
     function init() {
-        renderListView(mockBills);
-        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), mockBills);
+        const filteredBills = getFilteredBills();
+        renderListView(filteredBills);
+        renderCalendar(currentDate.getFullYear(), currentDate.getMonth(), filteredBills);
         activateView('list');
     }
 

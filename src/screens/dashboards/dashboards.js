@@ -4,28 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Usando a data de referência: 04 de Outubro de 2025
     const today = new Date('2025-10-04T00:00:00');
 
-    const mockBills = [
-        // Mês Atual (Outubro 2025)
-        { id: 1, name: 'Aluguel', dueDate: '2025-10-10', value: 2200.00, status: 'A Vencer', category: 'Moradia' },
-        { id: 2, name: 'Internet', dueDate: '2025-10-10', value: 99.90, status: 'Paga', category: 'Moradia' },
-        { id: 3, name: 'Cartão de Crédito', dueDate: '2025-10-15', value: 850.40, status: 'A Vencer', category: 'Finanças' },
-        { id: 4, name: 'COPASA', dueDate: '2025-10-20', value: 155.40, status: 'A Vencer', category: 'Moradia' },
-        { id: 5, name: 'Netflix', dueDate: '2025-10-01', value: 55.90, status: 'Paga', category: 'Assinaturas' },
-
-        // Meses Anteriores (para gráficos de evolução)
-        { id: 6, name: 'Energia', dueDate: '2025-09-05', value: 180.50, status: 'Paga', category: 'Moradia', paymentDate: '2025-09-05' },
-        { id: 7, name: 'Aluguel', dueDate: '2025-09-10', value: 2200.00, status: 'Paga', category: 'Moradia', paymentDate: '2025-09-08' },
-        { id: 8, name: 'Academia', dueDate: '2025-09-28', value: 120.00, status: 'Paga', category: 'Saúde', paymentDate: '2025-09-28' },
-        { id: 9, name: 'Energia', dueDate: '2025-08-05', value: 175.30, status: 'Paga', category: 'Moradia', paymentDate: '2025-08-05' },
-        { id: 10, name: 'Aluguel', dueDate: '2025-08-10', value: 2200.00, status: 'Paga', category: 'Moradia', paymentDate: '2025-08-10' },
-        { id: 11, name: 'Energia', dueDate: '2025-07-05', value: 170.10, status: 'Paga', category: 'Moradia', paymentDate: '2025-07-05' },
-        { id: 12, name: 'Energia', dueDate: '2025-06-05', value: 165.90, status: 'Paga', category: 'Moradia', paymentDate: '2025-06-05' },
-        { id: 13, name: 'Energia', dueDate: '2025-05-05', value: 160.00, status: 'Paga', category: 'Moradia', paymentDate: '2025-05-05' },
-        { id: 14, name: 'Energia', dueDate: '2025-04-05', value: 150.00, status: 'Paga', category: 'Moradia', paymentDate: '2025-04-05' },
-        { id: 15, name: 'Academia', dueDate: '2025-09-28', value: 120.00, status: 'Paga', category: 'Saúde', paymentDate: '2025-10-02' },
-        { id: 16, name: 'Plano de Saúde', dueDate: '2025-10-01', value: 450.00, status: 'Vencida', category: 'Saúde' },
-    ];
-
     const mockInsights = [
         {
             type: 'alerta',
@@ -46,13 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- PALETA DE CORES --- //
     const colorPalette = {
-        blue: '#0583F2',
+        darkPurple: '#542B8C',
         purple: '#8A6DF2',
-        green: '#067647',
-        orange: '#974f0c',
-        red: '#de350b',
-        teal: '#087b98',
-        pink: '#f263b1'
+        darkBlue: '#031859',
+        blue: '#0583F2',
+        lightBlue: '#63BBF2',
+        teal: '#087B98',
+        cyan: '#04C4D9'
     };
 
     // --- 1. WIDGET: RESUMO DO MÊS ATUAL --- //
@@ -61,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentYear = today.getFullYear();
         const monthName = today.toLocaleDateString('pt-BR', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase());
 
-        const billsThisMonth = mockBills.filter(bill => {
+        const billsThisMonth = window.mockBills.filter(bill => {
             const billDate = new Date(bill.dueDate);
             return billDate.getMonth() === currentMonth && billDate.getFullYear() === currentYear;
         });
@@ -74,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(b => b.status === 'Paga')
             .reduce((sum, b) => sum + b.value, 0);
 
-        const totalOverdue = mockBills
+        const totalOverdue = window.mockBills
             .filter(b => new Date(b.dueDate) < today && b.status !== 'Paga')
             .reduce((sum, b) => sum + b.value, 0);
 
@@ -116,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentMonth = today.getMonth();
         const currentYear = today.getFullYear();
 
-        const billsThisMonth = mockBills.filter(bill => {
+        const billsThisMonth = window.mockBills.filter(bill => {
             const billDate = new Date(bill.dueDate);
             return billDate.getMonth() === currentMonth && billDate.getFullYear() === currentYear;
         });
@@ -129,17 +107,36 @@ document.addEventListener('DOMContentLoaded', () => {
             return acc;
         }, {});
 
-        const labels = Object.keys(categoryTotals);
-        const data = Object.values(categoryTotals);
+        // Sort categories by value in descending order
+        const sortedCategories = Object.entries(categoryTotals)
+            .sort(([, a], [, b]) => b - a)
+            .map(([category]) => category);
+
+        const sortedData = sortedCategories.map(category => categoryTotals[category]);
+
+        // Sort colors from light to dark
+        const sortedColors = [
+            '#63BBF2',
+            '#0583F2',
+            '#8A6DF2',
+            '#04C4D9',
+            '#087B98',
+            '#542B8C',
+            '#031859'
+        ];
+
+        const backgroundColors = sortedCategories.map((category, index) => {
+            return sortedColors[index % sortedColors.length];
+        });
 
         const ctx = document.getElementById('category-donut-chart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: labels,
+                labels: sortedCategories,
                 datasets: [{
-                    data: data,
-                    backgroundColor: Object.values(colorPalette),
+                    data: sortedData,
+                    backgroundColor: backgroundColors,
                     borderWidth: 0
                 }]
             },
@@ -164,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             monthlyTotals[monthYear] = 0;
         }
 
-        mockBills.forEach(bill => {
+        window.mockBills.forEach(bill => {
             const billDate = new Date(bill.dueDate);
             const monthYear = billDate.toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' });
             if (monthlyTotals[monthYear] !== undefined) {
@@ -207,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             monthlyTotals[monthYear] = 0;
         }
 
-        mockBills
+        window.mockBills
             .filter(b => b.category === selectedCategory)
             .forEach(bill => {
                 const billDate = new Date(bill.dueDate);
@@ -248,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupCategorySelector() {
-        const categories = [...new Set(mockBills.map(b => b.category))];
+        const categories = [...new Set(window.mockBills.map(b => b.category))];
         const selector = document.getElementById('category-selector');
         categories.forEach(c => {
             const option = document.createElement('option');
@@ -274,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const previousMonthNumber = previousMonth.getMonth();
         const previousMonthYear = previousMonth.getFullYear();
 
-        const billsLastMonth = mockBills.filter(bill => {
+        const billsLastMonth = window.mockBills.filter(bill => {
             const billDate = new Date(bill.dueDate);
             return billDate.getMonth() === previousMonthNumber && billDate.getFullYear() === previousMonthYear;
         });
